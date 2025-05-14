@@ -11,6 +11,7 @@ public struct MoviePresentationModel {
     public let thumbnail: String
     public let title: String
     public let overview: String
+    public var isInWatchlist: Bool
     public let year: Int
     public let id: Int
     
@@ -23,6 +24,7 @@ public struct MoviePresentationModel {
         }
         self.title = movie.title ?? ""
         self.overview = movie.overview ?? ""
+        self.isInWatchlist = WatchlistManager.shared.isInWatchlist(movie.id)
         let formatter: DateFormatter = {
             $0.dateFormat = "yyyy-MM-dd"
             return $0

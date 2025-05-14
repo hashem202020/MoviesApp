@@ -27,6 +27,8 @@ public class MoviesListViewController: NiblessViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         title = "Movies App"
+        navigationItem.searchController = customView.searchController
+
         addChild(popularMoviesViewController)
         popularMoviesViewController.didMove(toParent: self)
         view.addSubview(popularMoviesViewController.view)

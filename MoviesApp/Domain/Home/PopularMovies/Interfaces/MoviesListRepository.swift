@@ -7,4 +7,5 @@
 
 public protocol MoviesListRepository {
     func fetchPopularMovies(page: Int) async throws -> [Movie]
+    func searchMovies(with query: String, page: Int) async throws -> [Movie]
 }
