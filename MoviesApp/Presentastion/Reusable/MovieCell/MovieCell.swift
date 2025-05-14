@@ -32,8 +32,9 @@ final public class MovieCell: UITableViewCell {
     // MARK: - Methods
     public func configure(with item: MoviePresentationModel) {
         self.movieId = item.id
-        thumbnailImage.kf.setImage(with: item.thumbnail.isEmpty ? nil : URL(string: item.thumbnail), placeholder: .none)
+        thumbnailImage.kf.setImage(with: item.thumbnail.isEmpty ? nil : URL(string: item.thumbnail), placeholder: UIImage(named: "moviePoster"))
         titleLabel.text = item.title
         overviewLabel.text = item.overview
+        watchlistIcon.image = item.isInWatchlist ? UIImage(named: "bookmarkActive") : nil
     }
 }

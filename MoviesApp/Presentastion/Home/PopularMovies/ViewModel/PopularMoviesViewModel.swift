@@ -6,15 +6,24 @@
 //
 
 import Foundation
+import Combine
 
 final class PopularMoviesViewModel {
     // MARK: - Properties
     private let getPopularMoviesUseCase: GetPopularMoviesUseCase
+    private let homeCoordinator: HomeCoordinator
+
     @Published var movies: [MoviePresentationModel] = []
 
+    public let selectItemSubject = PassthroughSubject<Int, Never>()
+    private var cancellables = Set<AnyCancellable>()
+    
     // MARK: - Methods
-    init(getPopularMoviesUseCase: GetPopularMoviesUseCase) {
+    init(getPopularMoviesUseCase: GetPopularMoviesUseCase,
+         homeCoordinator: HomeCoordinator) {
         self.getPopularMoviesUseCase = getPopularMoviesUseCase
+        self.homeCoordinator = homeCoordinator
+        bind()
     }
     
     func fetchMovies() {
@@ -24,10 +33,16 @@ final class PopularMoviesViewModel {
                 await MainActor.run {
                     movies = result.map(MoviePresentationModel.init)
                 }
-            } catch {
-                
-            }
+            } catch {}
         }
     }
+    
+    private func bind() {
+        selectItemSubject
+            .sink { [weak self] index in
+                guard let self else { return }
+                self.homeCoordinator.openMovieDetails(id: self.movies[index].id)
+            }
+            .store(in: &cancellables)
+    }
 }
-

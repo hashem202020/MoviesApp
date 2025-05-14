@@ -19,4 +19,10 @@ public final class DefaultMovieListRepository: MoviesListRepository {
         let moviesList = response.results?.map { $0.toDomain() } ?? []
         return moviesList
     }
+    
+    public func searchMovies(with query: String, page: Int) async throws -> [Movie] {
+        let response = try await moviesRemoteAPI.searchMovies(with: query, page: page)
+        let moviesList = response.results?.map { $0.toDomain() } ?? []
+        return moviesList
+    }
 }

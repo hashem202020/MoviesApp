@@ -26,17 +26,25 @@ final class PopularMoviesViewController: NiblessViewController {
     override func loadView() {
         view = customView
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        viewModel.fetchMovies()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         customView.tableView.dataSource = self
+        customView.tableView.delegate = self
+        
+        subscribeForMovies()
+    }
+    
+    func subscribeForMovies() {
         viewModel.$movies
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.customView.tableView.reloadData()
             }
             .store(in: &cancellables)
-
-        viewModel.fetchMovies()
     }
 }
 
@@ -56,4 +64,12 @@ extension PopularMoviesViewController: UITableViewDataSource {
         cell.configure(with: item)
         return cell
     }
+}
+
+extension PopularMoviesViewController: UITableViewDelegate {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.selectItemSubject.send(indexPath.row)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+
 }
