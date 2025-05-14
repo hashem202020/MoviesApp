@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		0C2338B82DD276CB00C96C12 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0C2338B72DD276CB00C96C12 /* Kingfisher */; };
+		0C7543952DD41DF1000B3C0B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0C7543942DD41DF1000B3C0B /* README.md */; };
 		0CDC832F2DD156AF000F99BA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0CDC832E2DD156AF000F99BA /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C7543942DD41DF1000B3C0B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0C7AEFF82DCFE8B800E50356 /* MoviesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -52,6 +54,7 @@
 		0C7AEFEF2DCFE8B800E50356 = {
 			isa = PBXGroup;
 			children = (
+				0C7543942DD41DF1000B3C0B /* README.md */,
 				0C7AEFFA2DCFE8B800E50356 /* MoviesApp */,
 				0C7AEFF92DCFE8B800E50356 /* Products */,
 			);
@@ -135,6 +138,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C7543952DD41DF1000B3C0B /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

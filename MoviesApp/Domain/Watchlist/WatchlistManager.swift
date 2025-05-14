@@ -15,7 +15,7 @@ final class WatchlistManager {
 
     private init() {}
 
-    func getWatchlist() -> Set<Int> {
+    private func getWatchlist() -> Set<Int> {
         let ids = defaults.array(forKey: key) as? [Int] ?? []
         return Set(ids)
     }
